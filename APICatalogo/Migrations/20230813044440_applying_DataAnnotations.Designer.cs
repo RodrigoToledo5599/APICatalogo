@@ -4,6 +4,7 @@ using APICatalogo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APICatalogo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230813044440_applying_DataAnnotations")]
+    partial class applying_DataAnnotations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,23 +45,6 @@ namespace APICatalogo.Migrations
                     b.HasKey("CategoriaId");
 
                     b.ToTable("Categorias");
-
-                    b.HasData(
-                        new
-                        {
-                            CategoriaId = 1,
-                            Nome = "Bebidas"
-                        },
-                        new
-                        {
-                            CategoriaId = 2,
-                            Nome = "Lanches"
-                        },
-                        new
-                        {
-                            CategoriaId = 3,
-                            Nome = "Sobremesas"
-                        });
                 });
 
             modelBuilder.Entity("APICatalogo.Models.Produto", b =>
@@ -99,38 +85,6 @@ namespace APICatalogo.Migrations
                     b.HasIndex("CategoriaId");
 
                     b.ToTable("Produtos");
-
-                    b.HasData(
-                        new
-                        {
-                            ProdutoId = 1,
-                            CategoriaId = 1,
-                            DataCadastro = new DateTime(2023, 8, 13, 2, 40, 53, 1, DateTimeKind.Local).AddTicks(6583),
-                            Descricao = "Refrigerante Cola 350 ml",
-                            Estoque = 140f,
-                            Nome = "Coca-Diet",
-                            Preco = 5.45m
-                        },
-                        new
-                        {
-                            ProdutoId = 2,
-                            CategoriaId = 2,
-                            DataCadastro = new DateTime(2023, 8, 13, 2, 40, 53, 1, DateTimeKind.Local).AddTicks(6594),
-                            Descricao = "Sanduiche de atum com maionese",
-                            Estoque = 78f,
-                            Nome = "Sanduiche de atum",
-                            Preco = 8.40m
-                        },
-                        new
-                        {
-                            ProdutoId = 3,
-                            CategoriaId = 3,
-                            DataCadastro = new DateTime(2023, 8, 13, 2, 40, 53, 1, DateTimeKind.Local).AddTicks(6596),
-                            Descricao = "Pudim de leite condensado 150g",
-                            Estoque = 78f,
-                            Nome = "Pudim ",
-                            Preco = 10.0m
-                        });
                 });
 
             modelBuilder.Entity("APICatalogo.Models.Produto", b =>
