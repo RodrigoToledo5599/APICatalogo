@@ -1,4 +1,5 @@
 
+using System.Text.Json.Serialization;
 using APICatalogo.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,12 +13,16 @@ namespace APICatalogo
 
 			// Add services to the container.
 
-			builder.Services.AddControllers();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+			builder.Services.AddControllers().AddJsonOptions(options =>
+			{
+				options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+			});
 			builder.Services.AddDbContext<AppDbContext>(options =>
 			options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
+			
 
 			var app = builder.Build();
 
